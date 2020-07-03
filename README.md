@@ -1,3 +1,10 @@
+## 代码片段 注释代码写在中间可以折叠
+```
+//#crgion
+
+//#endregion
+```
+
 ## jsx语法
 > 固定引入方式 引入名称及大小写不能改
 ```
@@ -133,3 +140,4 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 * 方法名称前面要加`this` 注意方法使用箭头函数 或者绑定方法加上`.bind(this)` 不然无法取到构造器函数中`state`的值
 * 如果想为`state`重的值重新赋值 推荐使用`setState` `setState`修改值不会影响其他的`state`值
 * `setState`方法是异步的 第二个参数就是修改后执行的方法(回掉函数)
+* `<input type='text'/>`中如果绑定`value` 要么提供一个`readonly`属性 要么加上`onChange`事件
