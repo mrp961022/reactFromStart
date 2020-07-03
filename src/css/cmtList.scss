@@ -1,0 +1,10 @@
+/* css模块化只会针对类和id选择器 标签选择器不会模块化 */
+.title {
+    color:red;
+    text-align: center;
+    font-weight: 200;
+}
+:global(.test){
+    /* 加上global可以使样式不被模块化会全局生效 */
+    font-style: italic;
+}
