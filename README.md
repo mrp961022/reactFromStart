@@ -141,3 +141,11 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 * 如果想为`state`重的值重新赋值 推荐使用`setState` `setState`修改值不会影响其他的`state`值
 * `setState`方法是异步的 第二个参数就是修改后执行的方法(回掉函数)
 * `<input type='text'/>`中如果绑定`value` 要么提供一个`readonly`属性 要么加上`onChange`事件
+```
+// input 中 onChange 监听变化
+// 第一种方式 通过 e.target.value
+<input type="text" onChange={ (e) => this.方法(e.target.value) }/>
+// 第二种方式 通过ref
+<input type="text" ref="text" onChange={ () => this.方法() }/>
+// 方法内使用 this.refs.text.value
+```

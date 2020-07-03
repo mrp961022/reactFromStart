@@ -12,7 +12,7 @@ export default class BindEvent extends React.Component {
     render() {
         return <div>
             <button onClick={ () => this.updateState("😁") } >修改</button>
-            <input onChange={ (e) => this.changeState(e.target.value) } type="text" value={ this.state.msg } style={{width:"100%"}}/>
+            <input ref="text" onChange={ (e) => this.changeState(e.target.value) } type="text" value={ this.state.msg } style={{width:"100%"}}/>
         </div>
     }
     updateState = (value) => {
@@ -22,6 +22,7 @@ export default class BindEvent extends React.Component {
         }, () => console.log(this.state.msg));
     }
     changeState = (value) => {
+        console.log(this.refs.text.value)
         this.setState({
             msg: value
         })
