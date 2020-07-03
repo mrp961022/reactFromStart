@@ -153,7 +153,7 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 ### 组件生命周期对比 `vue` 和 `react`
 * 生命周期：从创建 到运行 再到销毁的过程
 * 生命周期函数：在生命周期过程中必须执行的函数
-> `Vue` 生命周期和生命周期函数
+> `vue` 生命周期和生命周期函数
 * `new Vue()` 进入组件创建过程
 * `Init Event & Lifecycle` 初始化组件的事件和生命周期函数 执行完这一步 组件的生命周期函数就已经全部初始化好了 等待依次去调用
 * `beforeCreate` 组件创建阶段遇到的第一个生命周期函数 此时组件的`data` `methods` 以及dom结构都没有初始化
@@ -164,4 +164,33 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 * `no el` `when vm.$mount(el) is called` 可以当实例创建好 手动指定`el` 
 * `el && template` `Complie template into render function *` 有`el`并且有`template` 编译`template`所对应的模版编译到`render function` 此时模版挂在到内存上 还没有挂载到页面上
 * `el && !(template)` `Compile el's outerHTML as template *` 有`el`但是没有`template` 将`el`对应的结构编译为`template`模板 此时模版挂在到内存上 还没有挂载到页面上
-* `beforeMount` 模板在内存中编译完成会触发 此时内存中的模板结构还没有真正渲染到页面上 页面上此时看不到真是数据
+* `beforeMount` 模板在内存中编译完成会触发 此时内存中的模板结构还没有真正渲染到页面上 页面上此时看不到真是数据 此时用户只能看到一个模板页面看不到真是数据
+* `Create vm.$el and replace "el" with it` 此时正在把内存中编译好的模板结构替换到页面上
+* `mounted` 组件创建阶段最后一个生命周期函数 此时页面已经真正的渲染完毕 用户可以看到真实的页面数据了 这个生命周期执行结束 组件已经有离开创建阶段 进入运行中阶段 如果用到了一些第三方ui插件且需要被初始化 例如地图 echarts等 需要在这一步进行初始化操作
+* `beforeUpdate` 当`data`中的数据被修改触发 执行此函数时 数据是新的 页面上呈现的数据是旧的
+* `Virtual DOM re-render and patch` 正在根据最新的`data`数据重新渲染内存中的模板结构 并把渲染好的模板结构替换到页面上
+* `updated` 最新的数据已经完成了更新 此时`data`数据是最新的同时页面上呈现的数据也是最新的
+* `beforeDestroy` 组件即将被销毁 还没有真正开始销毁 此时组件还是正常可用的 `data` `methods` 依然可以访问
+* `Teardown watchers,child components and event listeners` 正在销毁中
+* `destroyed` 组件已经被销毁 `data` `methods` 已经不可用
+> `react` 生命周期和生命周期函数 
+### 组件的生命周期可分成三个状态：
+* `Mounting`：已插入真实 DOM
+* `Updating`：正在被重新渲染
+* `Unmounting`：已移出真实 DOM
+#### 生命周期的方法有：
+
+* `componentWillMount` 在渲染前调用,在客户端也在服务端。
+
+* `componentDidMount` : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过`this.getDOMNode()`来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用`setTimeout`, `setInterval`或者发送`AJAX`请求等操作(防止异步操作阻塞UI)。
+
+* `componentWillReceiveProps` 在组件接收到一个新的 `prop` (更新后)时被调用。这个方法在初始化`render`时不会被调用。
+
+* `shouldComponentUpdate` 返回一个布尔值。在组件接收到新的`props`或者`state`时被调用。在初始化时或者使用forceUpdate时不被调用。
+可以在你确认不需要更新组件时使用。
+
+* `componentWillUpdate`在组件接收到新的`props`或者`state`但还没有`render`时被调用。在初始化时不会被调用。
+
+* `componentDidUpdate` 在组件完成更新后立即调用。在初始化时不会被调用。
+
+* `componentWillUnmount`在组件从 `DOM` 中移除之前立刻被调用。
