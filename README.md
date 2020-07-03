@@ -151,3 +151,17 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 ```
 
 ### 组件生命周期对比 `vue` 和 `react`
+* 生命周期：从创建 到运行 再到销毁的过程
+* 生命周期函数：在生命周期过程中必须执行的函数
+> `Vue` 生命周期和生命周期函数
+* `new Vue()` 进入组件创建过程
+* `Init Event & Lifecycle` 初始化组件的事件和生命周期函数 执行完这一步 组件的生命周期函数就已经全部初始化好了 等待依次去调用
+* `beforeCreate` 组件创建阶段遇到的第一个生命周期函数 此时组件的`data` `methods` 以及dom结构都没有初始化
+* `Init injections & reactivity` 这个阶段正在初始化`data` 以及 `methods`
+* `created` 组件的`data`和`methods`已经初始化完毕 dom结构还没有初始化 一般在这个位置进行`ajax`请求
+* `Has "el" option?` 是否包含`el` 属性
+* `Has "template" option?` 是否包含 `template` 属性
+* `no el` `when vm.$mount(el) is called` 可以当实例创建好 手动指定`el` 
+* `el && template` `Complie template into render function *` 有`el`并且有`template` 编译`template`所对应的模版编译到`render function` 此时模版挂在到内存上 还没有挂载到页面上
+* `el && !(template)` `Compile el's outerHTML as template *` 有`el`但是没有`template` 将`el`对应的结构编译为`template`模板 此时模版挂在到内存上 还没有挂载到页面上
+* `beforeMount` 模板在内存中编译完成会触发 此时内存中的模板结构还没有真正渲染到页面上 页面上此时看不到真是数据
