@@ -126,5 +126,10 @@ class Dog extends Animal {
     · hash:length 表示一个32位的哈希值 length长度
 ```
 ### react中的事件
-* 事件名称为首字母小写的驼峰命名
+* 事件名称为首字母小写的驼峰命名 如果有入参这样写
+```
+onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个方法
+```
 * 方法名称前面要加`this` 注意方法使用箭头函数 或者绑定方法加上`.bind(this)` 不然无法取到构造器函数中`state`的值
+* 如果想为`state`重的值重新赋值 推荐使用`setState` `setState`修改值不会影响其他的`state`值
+* `setState`方法是异步的 第二个参数就是修改后执行的方法(回掉函数)
