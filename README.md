@@ -147,5 +147,7 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 <input type="text" onChange={ (e) => this.方法(e.target.value) }/>
 // 第二种方式 通过ref
 <input type="text" ref="text" onChange={ () => this.方法() }/>
-// 方法内使用 this.refs.text.value
+// 方法内使用 this.refs.text.value 
 ```
+
+### 组件生命周期对比 `vue` 和 `react`
