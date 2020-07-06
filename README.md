@@ -180,17 +180,21 @@ onClick={ () => this.updateState("aaa") } // 箭头函数返回值就是那个�
 * `Unmounting`：已移出真实 DOM
 #### 生命周期的方法有：
 
-* `componentWillMount` 在渲染前调用,在客户端也在服务端。
+* `componentWillMount` 在渲染前调用 在客户端也在服务端 
 
-* `componentDidMount` : 在第一次渲染后调用，只在客户端。之后组件已经生成了对应的DOM结构，可以通过`this.getDOMNode()`来进行访问。 如果你想和其他JavaScript框架一起使用，可以在这个方法中调用`setTimeout`, `setInterval`或者发送`AJAX`请求等操作(防止异步操作阻塞UI)。
+* `render` 开始渲染真正的虚拟dom 当render执行完成 内存中就有了虚拟dom
 
-* `componentWillReceiveProps` 在组件接收到一个新的 `prop` (更新后)时被调用。这个方法在初始化`render`时不会被调用。
+* `componentDidMount` : 在第一次渲染后调用 只在客户端 之后组件已经生成了对应的DOM结构 可以通过`this.getDOMNode()`来进行访问  如果你想和其他JavaScript框架一起使用 可以在这个方法中调用`setTimeout`  `setInterval`或者发送`AJAX`请求等操作(防止异步操作阻塞UI) 
 
-* `shouldComponentUpdate` 返回一个布尔值。在组件接收到新的`props`或者`state`时被调用。在初始化时或者使用forceUpdate时不被调用。
-可以在你确认不需要更新组件时使用。
+* `componentWillReceiveProps` 在组件接收到一个新的 `prop` (更新后)时被调用 这个方法在初始化`render`时不会被调用 
 
-* `componentWillUpdate`在组件接收到新的`props`或者`state`但还没有`render`时被调用。在初始化时不会被调用。
+* `shouldComponentUpdate` 返回一个布尔值 在组件接收到新的`props`或者`state`时被调用 在初始化时或者使用forceUpdate时不被调用 
+可以在你确认不需要更新组件时使用 
 
-* `componentDidUpdate` 在组件完成更新后立即调用。在初始化时不会被调用。
+* `componentWillUpdate` 在组件接收到新的`props`或者`state`但还没有`render`时被调用 在初始化时不会被调用 
 
-* `componentWillUnmount`在组件从 `DOM` 中移除之前立刻被调用。
+* `render` 重新根据最新的`state`和`props`重新渲染一颗内存中的虚拟dom树 render调用完毕的时候 内存中的旧的dom树已经被新的dom树替换 页面还是旧的
+
+* `componentDidUpdate` 在组件完成更新后立即调用 在初始化时不会被调用 
+
+* `componentWillUnmount` 在组件从 `DOM` 中移除之前立刻被调用 
